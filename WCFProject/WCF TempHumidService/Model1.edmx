@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="myDBModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="myDBModelStoreContainer">
+          <EntitySet Name="HumidityMeasurements" EntityType="myDBModel.Store.HumidityMeasurements" store:Type="Tables" />
+          <EntitySet Name="Locations" EntityType="myDBModel.Store.Locations" store:Type="Tables" />
+          <EntitySet Name="RMUnits" EntityType="myDBModel.Store.RMUnits" store:Type="Tables" />
+          <EntitySet Name="TemperatureMeasurements" EntityType="myDBModel.Store.TemperatureMeasurements" store:Type="Tables" />
+          <AssociationSet Name="fdf" Association="myDBModel.Store.fdf">
+            <End Role="RMUnits" EntitySet="RMUnits" />
+            <End Role="HumidityMeasurements" EntitySet="HumidityMeasurements" />
+          </AssociationSet>
+          <AssociationSet Name="rel" Association="myDBModel.Store.rel">
+            <End Role="Locations" EntitySet="Locations" />
+            <End Role="RMUnits" EntitySet="RMUnits" />
+          </AssociationSet>
+          <AssociationSet Name="relaaa" Association="myDBModel.Store.relaaa">
+            <End Role="RMUnits" EntitySet="RMUnits" />
+            <End Role="TemperatureMeasurements" EntitySet="TemperatureMeasurements" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="HumidityMeasurements">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="float" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
+          <Property Name="LocationName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Locations">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="RMUnits">
+          <Key>
+            <PropertyRef Name="LocationName" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="LocationName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="TemperatureMeasurements">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="float" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
+          <Property Name="LocationName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="fdf">
+          <End Role="RMUnits" Type="myDBModel.Store.RMUnits" Multiplicity="0..1" />
+          <End Role="HumidityMeasurements" Type="myDBModel.Store.HumidityMeasurements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RMUnits">
+              <PropertyRef Name="LocationName" />
+            </Principal>
+            <Dependent Role="HumidityMeasurements">
+              <PropertyRef Name="LocationName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="rel">
+          <End Role="Locations" Type="myDBModel.Store.Locations" Multiplicity="1" />
+          <End Role="RMUnits" Type="myDBModel.Store.RMUnits" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Locations">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="RMUnits">
+              <PropertyRef Name="LocationName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="relaaa">
+          <End Role="RMUnits" Type="myDBModel.Store.RMUnits" Multiplicity="0..1" />
+          <End Role="TemperatureMeasurements" Type="myDBModel.Store.TemperatureMeasurements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RMUnits">
+              <PropertyRef Name="LocationName" />
+            </Principal>
+            <Dependent Role="TemperatureMeasurements">
+              <PropertyRef Name="LocationName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="myDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="db1Entities1" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="HumidityMeasurements" EntityType="myDBModel.HumidityMeasurement" />
+          <EntitySet Name="Locations" EntityType="myDBModel.Location" />
+          <EntitySet Name="RMUnits" EntityType="myDBModel.RMUnit" />
+          <EntitySet Name="TemperatureMeasurements" EntityType="myDBModel.TemperatureMeasurement" />
+          <AssociationSet Name="fdf" Association="myDBModel.fdf">
+            <End Role="RMUnits" EntitySet="RMUnits" />
+            <End Role="HumidityMeasurements" EntitySet="HumidityMeasurements" />
+          </AssociationSet>
+          <AssociationSet Name="rel" Association="myDBModel.rel">
+            <End Role="Locations" EntitySet="Locations" />
+            <End Role="RMUnits" EntitySet="RMUnits" />
+          </AssociationSet>
+          <AssociationSet Name="relaaa" Association="myDBModel.relaaa">
+            <End Role="RMUnits" EntitySet="RMUnits" />
+            <End Role="TemperatureMeasurements" EntitySet="TemperatureMeasurements" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="HumidityMeasurement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="Double" Nullable="false" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LocationName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="RMUnit" Relationship="myDBModel.fdf" FromRole="HumidityMeasurements" ToRole="RMUnits" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="RMUnit" Relationship="myDBModel.rel" FromRole="Locations" ToRole="RMUnits" />
+        </EntityType>
+        <EntityType Name="RMUnit">
+          <Key>
+            <PropertyRef Name="LocationName" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LocationName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="HumidityMeasurements" Relationship="myDBModel.fdf" FromRole="RMUnits" ToRole="HumidityMeasurements" />
+          <NavigationProperty Name="Location" Relationship="myDBModel.rel" FromRole="RMUnits" ToRole="Locations" />
+          <NavigationProperty Name="TemperatureMeasurements" Relationship="myDBModel.relaaa" FromRole="RMUnits" ToRole="TemperatureMeasurements" />
+        </EntityType>
+        <EntityType Name="TemperatureMeasurement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="Double" Nullable="false" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LocationName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="RMUnit" Relationship="myDBModel.relaaa" FromRole="TemperatureMeasurements" ToRole="RMUnits" />
+        </EntityType>
+        <Association Name="fdf">
+          <End Role="RMUnits" Type="myDBModel.RMUnit" Multiplicity="0..1" />
+          <End Role="HumidityMeasurements" Type="myDBModel.HumidityMeasurement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RMUnits">
+              <PropertyRef Name="LocationName" />
+            </Principal>
+            <Dependent Role="HumidityMeasurements">
+              <PropertyRef Name="LocationName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="rel">
+          <End Role="Locations" Type="myDBModel.Location" Multiplicity="1" />
+          <End Role="RMUnits" Type="myDBModel.RMUnit" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Locations">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="RMUnits">
+              <PropertyRef Name="LocationName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="relaaa">
+          <End Role="RMUnits" Type="myDBModel.RMUnit" Multiplicity="0..1" />
+          <End Role="TemperatureMeasurements" Type="myDBModel.TemperatureMeasurement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RMUnits">
+              <PropertyRef Name="LocationName" />
+            </Principal>
+            <Dependent Role="TemperatureMeasurements">
+              <PropertyRef Name="LocationName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="myDBModelStoreContainer" CdmEntityContainer="db1Entities1">
+          <EntitySetMapping Name="HumidityMeasurements">
+            <EntityTypeMapping TypeName="myDBModel.HumidityMeasurement">
+              <MappingFragment StoreEntitySet="HumidityMeasurements">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="myDBModel.Location">
+              <MappingFragment StoreEntitySet="Locations">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RMUnits">
+            <EntityTypeMapping TypeName="myDBModel.RMUnit">
+              <MappingFragment StoreEntitySet="RMUnits">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TemperatureMeasurements">
+            <EntityTypeMapping TypeName="myDBModel.TemperatureMeasurement">
+              <MappingFragment StoreEntitySet="TemperatureMeasurements">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

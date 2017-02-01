@@ -1,0 +1,380 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TempHumidPublishService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_IMeasurementUnitService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IMeasurementClientService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/WCF_TempHumidService" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IMeasurementUnitService_GetAllLocations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllLocations" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementUnitService_GetAllLocations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllLocationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementUnitService_Subscribe_InputMessage">
+    <wsdl:part name="parameters" element="tns:Subscribe" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementUnitService_Unsubscribe_InputMessage">
+    <wsdl:part name="parameters" element="tns:Unsubscribe" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementUnitService_Unsubscribe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnsubscribeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementUnitService_SendNewTemperatureMeasurement_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendNewTemperatureMeasurement" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementUnitService_SendNewHumidityMeasurement_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendNewHumidityMeasurement" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementUnitService_OnHumidityMeasurementSent_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnHumidityMeasurementSent" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementUnitService_OnTemperatureMeasurementSent_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnTemperatureMeasurementSent" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementUnitService_OnSubcribe_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnSubcribe" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementUnitService_OnUnsubcribe_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnUnsubcribe" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementClientService_ConnnectToServer_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConnnectToServer" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementClientService_ConnnectToServer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConnnectToServerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementClientService_SubscribeToMeasurement_InputMessage">
+    <wsdl:part name="parameters" element="tns:SubscribeToMeasurement" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementClientService_SubscribeToMeasurement_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SubscribeToMeasurementResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementClientService_UnsubscribeToMeasurement_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnsubscribeToMeasurement" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementClientService_UnsubscribeToMeasurement_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnsubscribeToMeasurementResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementClientService_GetAllMeasurementsFromLocationDateToDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllMeasurementsFromLocationDateToDate" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementClientService_GetAllMeasurementsFromLocationDateToDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllMeasurementsFromLocationDateToDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementClientService_GetAllMeasuremensWithLimit_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllMeasuremensWithLimit" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementClientService_GetAllMeasuremensWithLimit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllMeasuremensWithLimitResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementClientService_GetAverageMeasurementsFromLocation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAverageMeasurementsFromLocation" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementClientService_GetAverageMeasurementsFromLocation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAverageMeasurementsFromLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementClientService_DisconnectFromServer_InputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectFromServer" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementClientService_DisconnectFromServer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectFromServerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementClientService_onNewTemperatureMeasurementReceived_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:onNewTemperatureMeasurementReceived" />
+  </wsdl:message>
+  <wsdl:message name="IMeasurementClientService_onNewHumidityMeasurementReceived_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:onNewHumidityMeasurementReceived" />
+  </wsdl:message>
+  <wsdl:portType msc:usingSession="true" name="IMeasurementUnitService">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetAllLocations">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMeasurementUnitService/GetAllLocations" message="tns:IMeasurementUnitService_GetAllLocations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMeasurementUnitService/GetAllLocationsResponse" message="tns:IMeasurementUnitService_GetAllLocations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Subscribe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMeasurementUnitService/Subscribe" message="tns:IMeasurementUnitService_Subscribe_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Unsubscribe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMeasurementUnitService/Unsubscribe" message="tns:IMeasurementUnitService_Unsubscribe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMeasurementUnitService/UnsubscribeResponse" message="tns:IMeasurementUnitService_Unsubscribe_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SendNewTemperatureMeasurement">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMeasurementUnitService/SendNewTemperatureMeasurement" message="tns:IMeasurementUnitService_SendNewTemperatureMeasurement_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SendNewHumidityMeasurement">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMeasurementUnitService/SendNewHumidityMeasurement" message="tns:IMeasurementUnitService_SendNewHumidityMeasurement_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="OnHumidityMeasurementSent">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMeasurementUnitService/OnHumidityMeasurementSent" message="tns:IMeasurementUnitService_OnHumidityMeasurementSent_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="OnTemperatureMeasurementSent">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMeasurementUnitService/OnTemperatureMeasurementSent" message="tns:IMeasurementUnitService_OnTemperatureMeasurementSent_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="OnSubcribe">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMeasurementUnitService/OnSubcribe" message="tns:IMeasurementUnitService_OnSubcribe_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="OnUnsubcribe">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMeasurementUnitService/OnUnsubcribe" message="tns:IMeasurementUnitService_OnUnsubcribe_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType msc:usingSession="true" name="IMeasurementClientService">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ConnnectToServer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMeasurementClientService/ConnnectToServer" message="tns:IMeasurementClientService_ConnnectToServer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMeasurementClientService/ConnnectToServerResponse" message="tns:IMeasurementClientService_ConnnectToServer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SubscribeToMeasurement">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMeasurementClientService/SubscribeToMeasurement" message="tns:IMeasurementClientService_SubscribeToMeasurement_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMeasurementClientService/SubscribeToMeasurementResponse" message="tns:IMeasurementClientService_SubscribeToMeasurement_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UnsubscribeToMeasurement">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMeasurementClientService/UnsubscribeToMeasurement" message="tns:IMeasurementClientService_UnsubscribeToMeasurement_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMeasurementClientService/UnsubscribeToMeasurementResponse" message="tns:IMeasurementClientService_UnsubscribeToMeasurement_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetAllMeasurementsFromLocationDateToDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMeasurementClientService/GetAllMeasurementsFromLocationDateToDate" message="tns:IMeasurementClientService_GetAllMeasurementsFromLocationDateToDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMeasurementClientService/GetAllMeasurementsFromLocationDateToDateResponse" message="tns:IMeasurementClientService_GetAllMeasurementsFromLocationDateToDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetAllMeasuremensWithLimit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMeasurementClientService/GetAllMeasuremensWithLimit" message="tns:IMeasurementClientService_GetAllMeasuremensWithLimit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMeasurementClientService/GetAllMeasuremensWithLimitResponse" message="tns:IMeasurementClientService_GetAllMeasuremensWithLimit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetAverageMeasurementsFromLocation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMeasurementClientService/GetAverageMeasurementsFromLocation" message="tns:IMeasurementClientService_GetAverageMeasurementsFromLocation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMeasurementClientService/GetAverageMeasurementsFromLocationResponse" message="tns:IMeasurementClientService_GetAverageMeasurementsFromLocation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="true" name="DisconnectFromServer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMeasurementClientService/DisconnectFromServer" message="tns:IMeasurementClientService_DisconnectFromServer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMeasurementClientService/DisconnectFromServerResponse" message="tns:IMeasurementClientService_DisconnectFromServer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="onNewTemperatureMeasurementReceived">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMeasurementClientService/onNewTemperatureMeasurementReceived" message="tns:IMeasurementClientService_onNewTemperatureMeasurementReceived_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="onNewHumidityMeasurementReceived">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMeasurementClientService/onNewHumidityMeasurementReceived" message="tns:IMeasurementClientService_onNewHumidityMeasurementReceived_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_IMeasurementUnitService" type="tns:IMeasurementUnitService">
+    <wsp:PolicyReference URI="#NetTcpBinding_IMeasurementUnitService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="GetAllLocations">
+      <soap12:operation soapAction="http://tempuri.org/IMeasurementUnitService/GetAllLocations" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Subscribe">
+      <soap12:operation soapAction="http://tempuri.org/IMeasurementUnitService/Subscribe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="Unsubscribe">
+      <soap12:operation soapAction="http://tempuri.org/IMeasurementUnitService/Unsubscribe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendNewTemperatureMeasurement">
+      <soap12:operation soapAction="http://tempuri.org/IMeasurementUnitService/SendNewTemperatureMeasurement" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SendNewHumidityMeasurement">
+      <soap12:operation soapAction="http://tempuri.org/IMeasurementUnitService/SendNewHumidityMeasurement" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="OnHumidityMeasurementSent">
+      <soap12:operation soapAction="http://tempuri.org/IMeasurementUnitService/OnHumidityMeasurementSent" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnTemperatureMeasurementSent">
+      <soap12:operation soapAction="http://tempuri.org/IMeasurementUnitService/OnTemperatureMeasurementSent" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnSubcribe">
+      <soap12:operation soapAction="http://tempuri.org/IMeasurementUnitService/OnSubcribe" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnUnsubcribe">
+      <soap12:operation soapAction="http://tempuri.org/IMeasurementUnitService/OnUnsubcribe" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IMeasurementClientService" type="tns:IMeasurementClientService">
+    <wsp:PolicyReference URI="#NetTcpBinding_IMeasurementClientService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="ConnnectToServer">
+      <soap12:operation soapAction="http://tempuri.org/IMeasurementClientService/ConnnectToServer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubscribeToMeasurement">
+      <soap12:operation soapAction="http://tempuri.org/IMeasurementClientService/SubscribeToMeasurement" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnsubscribeToMeasurement">
+      <soap12:operation soapAction="http://tempuri.org/IMeasurementClientService/UnsubscribeToMeasurement" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMeasurementsFromLocationDateToDate">
+      <soap12:operation soapAction="http://tempuri.org/IMeasurementClientService/GetAllMeasurementsFromLocationDateToDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMeasuremensWithLimit">
+      <soap12:operation soapAction="http://tempuri.org/IMeasurementClientService/GetAllMeasuremensWithLimit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAverageMeasurementsFromLocation">
+      <soap12:operation soapAction="http://tempuri.org/IMeasurementClientService/GetAverageMeasurementsFromLocation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisconnectFromServer">
+      <soap12:operation soapAction="http://tempuri.org/IMeasurementClientService/DisconnectFromServer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="onNewTemperatureMeasurementReceived">
+      <soap12:operation soapAction="http://tempuri.org/IMeasurementClientService/onNewTemperatureMeasurementReceived" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="onNewHumidityMeasurementReceived">
+      <soap12:operation soapAction="http://tempuri.org/IMeasurementClientService/onNewHumidityMeasurementReceived" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TempHumidPublishService">
+    <wsdl:port name="NetTcpBinding_IMeasurementUnitService" binding="tns:NetTcpBinding_IMeasurementUnitService">
+      <soap12:address location="net.tcp://localhost:8008/WCF_TempHumidService/MeasurementUnit" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8008/WCF_TempHumidService/MeasurementUnit</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IMeasurementClientService" binding="tns:NetTcpBinding_IMeasurementClientService">
+      <soap12:address location="net.tcp://localhost:8008/WCF_TempHumidService/MeasurementClient" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8008/WCF_TempHumidService/MeasurementClient</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

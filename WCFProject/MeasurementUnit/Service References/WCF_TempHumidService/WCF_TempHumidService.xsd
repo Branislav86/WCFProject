@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WCF_TempHumidService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WCF_TempHumidService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="MyTemperatureMeasurement">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MyDateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MyLocationName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MyRMUnitName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MyValue" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MyTemperatureMeasurement" nillable="true" type="tns:MyTemperatureMeasurement" />
+  <xs:complexType name="MyHumidityMeasurement">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MyDateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MyLocationName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MyRMUnitName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MyValue" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MyHumidityMeasurement" nillable="true" type="tns:MyHumidityMeasurement" />
+  <xs:complexType name="MyRMUnit">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MyLocationName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MyName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MyRMUnit" nillable="true" type="tns:MyRMUnit" />
+  <xs:complexType name="MyMeasurements">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MyAverageHumidity" type="xs:float" />
+      <xs:element minOccurs="0" name="MyAverageTemperature" type="xs:float" />
+      <xs:element minOccurs="0" name="MyHumMeasurements" nillable="true" type="tns:ArrayOfMyHumidityMeasurement" />
+      <xs:element minOccurs="0" name="MyTempMeasurements" nillable="true" type="tns:ArrayOfMyTemperatureMeasurement" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MyMeasurements" nillable="true" type="tns:MyMeasurements" />
+  <xs:complexType name="ArrayOfMyHumidityMeasurement">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MyHumidityMeasurement" nillable="true" type="tns:MyHumidityMeasurement" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMyHumidityMeasurement" nillable="true" type="tns:ArrayOfMyHumidityMeasurement" />
+  <xs:complexType name="ArrayOfMyTemperatureMeasurement">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MyTemperatureMeasurement" nillable="true" type="tns:MyTemperatureMeasurement" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMyTemperatureMeasurement" nillable="true" type="tns:ArrayOfMyTemperatureMeasurement" />
+</xs:schema>

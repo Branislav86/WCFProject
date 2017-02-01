@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="7491e2ae-1628-49ad-8f68-10a74dcaeeab" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8009/WCF_TempHumidService/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="b4988008-0178-443a-a82f-e40abb34867b" SourceId="1" SourceUrl="http://localhost:8009/WCF_TempHumidService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="aefe9eda-8681-4719-b55f-aeef329c26cb" SourceId="1" SourceUrl="http://localhost:8009/WCF_TempHumidService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="8ebe301a-17ed-40a6-b4de-a5669f10b556" SourceId="1" SourceUrl="http://localhost:8009/WCF_TempHumidService/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="85c58d9a-df69-4ce6-b258-22fa5f19c7f3" SourceId="1" SourceUrl="http://localhost:8009/WCF_TempHumidService/mex" />
+    <MetadataFile FileName="WCF_TempHumidService.xsd" MetadataType="Schema" ID="66a703ea-8f8b-4dec-b56d-a1da228c05da" SourceId="1" SourceUrl="http://localhost:8009/WCF_TempHumidService/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
